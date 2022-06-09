@@ -119,6 +119,14 @@ describe FuzzyTools::TfIdfIndex do
       end
     end
 
+    describe "#find_with_score" do
+      it "returns the best result" do
+        mushy_stuff = ["mushrooms", "mushroom", "mushy pit", "ABC"]
+        index = FuzzyTools::TfIdfIndex.new(:source => mushy_stuff)
+        index.find_with_score("mushroom").should == ["mushroom" , 1.0]
+      end
+    end
+
     describe "#all" do
       it "returns all results, from best to worst" do
         mushy_stuff = ["mushrooms", "mushroom", "mushy pit", "ABC"]
